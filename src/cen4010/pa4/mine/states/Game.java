@@ -4,7 +4,6 @@ import cen4010.pa4.mine.core.State;
 import cen4010.pa4.mine.core.Window;
 
 public class Game extends State {
-	private static final long serialVersionUID = 1L;
 	
 	public Game(Window parent) {
 		super("Game", parent);

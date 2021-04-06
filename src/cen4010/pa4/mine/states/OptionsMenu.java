@@ -3,37 +3,18 @@ package cen4010.pa4.mine.states;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.DocumentFilter;
 import javax.swing.text.AbstractDocument;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
-
 import cen4010.pa4.mine.core.DocumentSizeFilter;
 import cen4010.pa4.mine.core.State;
 import cen4010.pa4.mine.core.Window;
 
 public class OptionsMenu extends State {
-	private static final long serialVersionUID = 1L;
 	
 	BoxLayout boxLayout;
 
@@ -52,7 +33,6 @@ public class OptionsMenu extends State {
 		JButton BackButton = new JButton("Back");
 		BackButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		int fontSize = BackButton.getFont().getSize();
-//		BackButton.setMaximumSize(new Dimension(40, 40));
 		
 		mainPanel.add(BackButton);
 

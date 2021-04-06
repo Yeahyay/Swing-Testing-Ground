@@ -2,21 +2,14 @@ package cen4010.pa4.mine.core;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Stack;
 
 import javax.swing.JFrame;
-import javax.swing.Timer;
 import javax.swing.WindowConstants;
 
 public class Window extends JFrame implements Runnable {
@@ -34,9 +27,9 @@ public class Window extends JFrame implements Runnable {
 
 		// initialize book keeping data structures
 		allStates = new HashMap<>();	// all states are kept track of in a HashMap by name so that only their names are needed
-		stateStack = new Stack<>();
+		stateStack = new Stack<>();		// uses a stack to manage states
 		
-		cardLayout = new CardLayout();
+		cardLayout = new CardLayout();	// this layout holds multiple components that shuffle focus like a deck of cards
 		setLayout(cardLayout);
 	
 		Insets insets = getInsets();
@@ -56,11 +49,7 @@ public class Window extends JFrame implements Runnable {
 				e.getWindow().dispose();
 			}
 		};
-		
 		addWindowListener(listener);
-		
-		addComponentListener(new ComponentAdapter() {
-		});
 		
 		setVisible(true);
 	}
@@ -89,15 +78,16 @@ public class Window extends JFrame implements Runnable {
 	
 	@Override
 	public void run() {
+		// update the current state
 		peekState().update();
 	}
 
 	public void displayState(State from, State to) {
-		System.out.printf("From %s to %s\n", from.name, to.name);
+//		System.out.printf("From %s to %s\n", from.name, to.name);
 		from.exit();
 		to.enter();
-		cardLayout.show(getContentPane(), to.name);
-		pack();
+		cardLayout.show(getContentPane(), to.name);	// switches which "card" (state) to show
+//		pack();
 	}
 
 	public State peekState() {

@@ -1,5 +1,6 @@
 package cen4010.pa4.mine.core;
 
+// high precision timing class
 public class Time {
     private static long startTime = System.nanoTime();
     private static long lastTime = 0;
@@ -31,5 +32,8 @@ public class Time {
 		fps = 1000000000.0 / (double)deltaTime;
 
 		lastTime = System.nanoTime() - startTime;
+	}
+	public static double getDelta() {
+		return deltaTime / 1000000000.0;
 	}
 }

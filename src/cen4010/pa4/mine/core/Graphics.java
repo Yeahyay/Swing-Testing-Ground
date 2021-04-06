@@ -3,6 +3,7 @@ package cen4010.pa4.mine.core;
 import java.util.ArrayDeque;
 import java.awt.Canvas;
 
+// unused
 public class Graphics extends Canvas {
 	/**
 	 * 

@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 
 import cen4010.pa4.mine.core.Time;
 import cen4010.pa4.mine.core.Window;
+import cen4010.pa4.mine.tween.Tween;
 
 public class Program {
 	static Window window;
@@ -30,12 +31,13 @@ public class Program {
 		window.addState(new StartMenu(window));
 		window.addState(new OptionsMenu(window));
 
-		window.pushState("Main");
+		window.pushState("Start");
 		
 		window.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
+		// ensures that all Swing-related statements occur on Swing's Event Dispatch Thread
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				start();
@@ -49,11 +51,21 @@ public class Program {
 								
 								Time.calculateTimer();
 								Time.calculateFrameTimeStart();
+								// Tweens can modify Swing data, so this is probably needed
+								SwingUtilities.invokeAndWait(new Runnable() {
+									@Override
+									public void run() {
+										Tween.update(Time.getDelta());
+									}
+								});
 								SwingUtilities.invokeAndWait(window);
 								
 								Time.calculateFrameTimeEnd();
 								
-								Thread.sleep(1);
+//								System.out.println(Time.getDelta());
+//								System.out.println(Time.getFPS());
+								
+								Thread.sleep(15);
 
 							} catch (InvocationTargetException | InterruptedException e) {
 								e.printStackTrace();
